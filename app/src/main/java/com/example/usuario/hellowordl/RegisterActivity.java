@@ -33,6 +33,12 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser =mAuth.getCurrentUser();
+    }
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -62,9 +68,11 @@ public class RegisterActivity extends AppCompatActivity {
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
+                            Log.w(TAG, "sigIngWithEmail::sucees");
                             Toast.makeText(RegisterActivity.this,"Failed",
                                     Toast.LENGTH_SHORT).show();
                         }
+
 
                         // ...
                     }
